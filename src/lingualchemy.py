@@ -59,13 +59,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--out_path",
         type=str,
-        default="/mnt/beegfs/farid/lingualchemy/ablation",
+        # default="/mnt/beegfs/farid/lingualchemy/ablation",
+        default="ablation",
         help="Set the pre-trained model.",
     )
     parser.add_argument(
         "--eval_path",
         type=str,
-        default="/home/alham.fikri/farid/lingualchemy/outputs",
+        # default="/home/alham.fikri/farid/lingualchemy/outputs",
+        default="outputs",
         help="Set the evaluation dump file path.",
     )
     parser.add_argument(
@@ -158,7 +160,9 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained(args.model_name)
 
     # Load URIEL data
-    uriel_data = torch.load(f'/home/alham.fikri/farid/lingualchemy/vectors/{args.vector}.pt')
+    # uriel_data = torch.load(f'/home/alham.fikri/farid/lingualchemy/vectors/{args.vector}.pt')
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    uriel_data = torch.load(os.path.join(script_dir, '..', 'vectors', f'{args.vector}.pt'))
     uriel_vector = torch.stack([torch.tensor(uriel_data[lang]) for lang in sorted(uriel_data.keys())])
     lang_to_index = {lang: idx for idx, lang in enumerate(sorted(uriel_data.keys()))}
 
