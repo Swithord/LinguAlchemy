@@ -5,7 +5,7 @@ import numpy as np
 torch.serialization.add_safe_globals([np.core.multiarray._reconstruct, np.ndarray])
 
 # Load the tensor or model with weights_only=True
-file_path = 'vectors\syntax_knn.pt'
+file_path = 'vectors\old_vectors\syntax_knn_syntax_average_geo.pt'
 data = torch.load(file_path, weights_only=False)
 
 # Convert data to string based on its type
@@ -20,7 +20,7 @@ elif isinstance(data, (list, tuple)):
 else:
     data_str = str(data)
 
-file_name = 'syntax_knn.txt'
+file_name = 'syntax_knn_syntax_average_geo.txt'
 
 # Write the string to a txt file
 with open(file_name, 'w') as file:
